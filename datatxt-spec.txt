@@ -49,92 +49,63 @@ Table of Contents
 1.  Abstract
 
    This memo defines a method for administrators of sites on the World-
-   Wide Web to give instructions to visiting Web robots, most
-   importantly what areas of the site are to be avoided.
-
-   This document provides a more rigid specification of the Standard 
-   for Robots Exclusion [1], which is currently in wide-spread use by
-   the Web community since 1994.
-
+   Wide Web to allow automated tools to easily discover paths to
+   datasets and describe their contents.
 
 2.  Introduction
 
-   Web Robots (also called "Wanderers" or "Spiders") are Web client
-   programs that automatically traverse the Web's hypertext structure
-   by retrieving a document, and recursively retrieving all documents
-   that are referenced.
-
-   Note that "recursively" here doesn't limit the definition to any
-   specific traversal algorithm; even if a robot applies some heuristic
-   to the selection and order of documents to visit and spaces out
-   requests over a long space of time, it qualifies to be called a
-   robot.
-
-   Robots are often used for maintenance and indexing purposes, by
-   people other than the administrators of the site being visited. In
-   some cases such visits may have undesirable effects which the
-   administrators would like to prevent, such as indexing of an
-   unannounced site, traversal of parts of the site which require vast
-   resources of the server, recursive traversal of an infinite URL
-   space, etc.
+   Data Catalogs have been embraced by government agencies, nonprofit
+   organizations, and for-profit organizations that aim to provide
+   open access to data and transparency. A data catalog is often
+   comprised of a web interface to search and download datasets;
+   however, it is hard to automate the discovery and extraction of
+   datasets since each catalog implements a different set of endpoints
+   and protocols.
 
    The technique specified in this memo allows Web site administrators
-   to indicate to visiting robots which parts of the site should be
-   avoided. It is solely up to the visiting robot to consult this
-   information and act accordingly. Blocking parts of the Web site
-   regardless of a robot's compliance with this method are outside
-   the scope of this memo.
-   
+   to indicate to visiting humans and robots where datasets are
+   locateed within their site.
+
+   It is solely up to the visitor to consult this information and act
+   accordingly. By searching the index, rendering metadata associated
+   with each dataset and download them without having to rely on
+   complex methods to infer if a given page withibn the site contains
+   datasets, or not.
    
 3. The Specification
 
-   This memo specifies a format for encoding instructions to visiting
-   robots, and specifies an access method to retrieve these
-   instructions. Robots must retrieve these instructions before visiting
-   other URLs on the site, and use the instructions to determine if
-   other URLs on the site can be accessed.
+   This memo specifies a format for exposing datasets to Web site
+   visitors, and specifies an access method to retrieve these
+   instructions. Visitors can then choose to provide custom data
+   catalogs that support one or many Web sites through user interface
+   or automated methods.
 
 3.1 Access method
 
    The instructions must be accessible via HTTP [2] from the site that
    the instructions are to be applied to, as a resource of Internet
    Media Type [3] "text/plain" under a standard relative path on the
-   server: "/robots.txt".
+   server: "/data.txt".
 
-   For convenience we will refer to this resource as the "/robots.txt
+   For convenience we will refer to this resource as the "/data.txt
    file", though the resource need in fact not originate from a file-
    system.
 
    Some examples of URLs [4] for sites and URLs for corresponding
-   "/robots.txt" sites:
+   "/data.txt" sites:
 
-     http://www.foo.com/welcome.html http://www.foo.com/robots.txt
+     https://datatxt.org/            https://datatxt.org/data.txt
 
-     http://www.bar.com:8001/        http://www.bar.com:8001/robots.txt
+     http://www.bar.com:8001/        http://www.bar.com:8001/data.txt
 
    If the server response indicates Success (HTTP 2xx Status Code,)
-   the robot must read the content, parse it, and follow any
-   instructions applicable to that robot.
+   the visitor can read the content, parse it, and present an
+   appropriate user interface or automated method to process the
+   Web site as a source for a given data catalog.
 
    If the server response indicates the resource does not exist (HTTP
-   Status Code 404), the robot can assume no instructions are
-   available, and that access to the site is not restricted by
-   /robots.txt.
-
-   Specific behaviors for other server responses are not required by
-   this specification, though the following behaviours are recommended:
-
-     - On server response indicating access restrictions (HTTP Status
-       Code 401 or 403) a robot should regard access to the site
-       completely restricted.
-
-     - On the request attempt resulted in temporary failure a robot
-       should defer visits to the site until such time as the resource
-       can be retrieved.
-  
-     - On server response indicating Redirection (HTTP Status Code 3XX)
-       a robot should follow the redirects until a resource can be
-       found.
+   Status Code 404), the visitor should assume the Web site might
+   contain datasets which require to be discovered by other methods.
 
 3.2 File Format Description
 
