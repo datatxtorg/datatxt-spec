@@ -64,12 +64,12 @@ Table of Contents
 
    The technique specified in this memo allows Web site administrators
    to indicate to visiting humans and robots where datasets are
-   locateed within their site.
+   located within their site.
 
    It is solely up to the visitor to consult this information and act
    accordingly. By searching the index, rendering metadata associated
    with each dataset and download them without having to rely on
-   complex methods to infer if a given page withibn the site contains
+   complex methods to infer if a given page within the site contains
    datasets, or not.
    
 3. The Specification
@@ -163,7 +163,7 @@ Table of Contents
    The name comparisons are case-insensitive.
   
    For example, a fictional company FigTree Search Services who names
-   their robot "Fig Tree", send HTTP requests like:
+   their robot "Fig Tree", and sends HTTP requests like:
   
      GET / HTTP/1.0
      User-agent: FigTree/0.1 Robot libwww-perl/5.04
@@ -381,7 +381,7 @@ Table of Contents
    Disallow, a robot ignoring Allow lines will not retrieve those
    parts. This is considered acceptable because there is no requirement
    for a robot to access URLs it is allowed to retrieve, and it is safe,
-   in that no URLs a Web site administrator wants to Disallow are be
+   in that no URLs a Web site administrator wants to Disallow are
    allowed. It is expected this may in fact encourage robots to upgrade
    compliance to the specification in this memo.
 
@@ -407,10 +407,10 @@ Table of Contents
    Web site administrators must realise this method is voluntary, and
    is not sufficient to guarantee some robots will not visit restricted
    parts of the URL space. Failure to use proper authentication or other
-   restriction may result in exposure of restricted information. It even
+   restriction may result in exposure of restricted information. It is even
    possible that the occurence of paths in the /robots.txt file may
    expose the existence of resources not otherwise linked to on the
-   site, which may aid people guessing for URLs.
+   site, which may aid people guessing URLs.
 
    Robots need to be aware that the amount of resources spent on dealing
    with the /robots.txt is a function of the file contents, which is not
@@ -428,7 +428,7 @@ Table of Contents
 
 7. Acknowledgements
 
-   The author would like the subscribers to the robots mailing list for
+   The author would like to thank the subscribers to the robots mailing list for
    their contributions to this specification.
 
 8. References
